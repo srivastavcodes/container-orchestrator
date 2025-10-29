@@ -17,10 +17,10 @@ type Manager struct {
 	Pending queue.Queue
 
 	// TaskDb is an in-memory database holding Tasks.
-	TaskDb map[string]*task.Task
+	TaskDb map[string][]*task.Task
 
 	// EventDb is an in-memory database holding TaskEvents.
-	EventDb map[string]*task.TaskEvent
+	EventDb map[string][]*task.TaskEvent
 
 	// Workers the Manager keeps track of in the cluster.
 	Workers []string
