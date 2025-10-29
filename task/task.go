@@ -54,6 +54,7 @@ type Task struct {
 	FinishTime time.Time // see StartTime for docs.
 }
 
+// TaskEvent represents a change in the current state of the Task.
 type TaskEvent struct {
 	ID        uuid.UUID
 	State     State
