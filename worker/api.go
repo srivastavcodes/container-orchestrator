@@ -7,7 +7,7 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-// TODO: turn write the api in grpc
+// TODO: write the api in grpc
 
 type ErrResponse struct {
 	HTTPStatusCode int
