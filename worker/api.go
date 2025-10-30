@@ -3,7 +3,6 @@ package worker
 import (
 	"log"
 	"net/http"
-	"strconv"
 
 	"github.com/go-chi/chi/v5"
 )
@@ -17,7 +16,7 @@ type ErrResponse struct {
 
 type WorkerApi struct {
 	Host   string
-	Port   int
+	Port   string
 	Worker *Worker
 	Router *chi.Mux
 }
@@ -36,6 +35,6 @@ func (wa *WorkerApi) initRouter() {
 
 func (wa *WorkerApi) Start() {
 	wa.initRouter()
-	addr := wa.Host + ":" + strconv.Itoa(wa.Port)
+	addr := wa.Host + ":" + wa.Port
 	log.Fatal(http.ListenAndServe(addr, wa.Router))
 }
