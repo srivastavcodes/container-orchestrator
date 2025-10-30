@@ -30,11 +30,10 @@ const (
 type Task struct {
 	// ID is the 128 bit universally unique identifier to distinguish between
 	// individual tasks.
-	ID          uuid.UUID
-	ContainerID string
+	ID uuid.UUID
 
-	// Name is the name of the task for better readability.
-	Name string
+	ContainerID string
+	Name        string // Name is the name of the task for better readability.
 
 	// State represents the current state of the task. See State more info.
 	State State
@@ -102,9 +101,29 @@ type Config struct {
 	RestartPolicy string
 }
 
+func NewConfig(t *Task) *Config {
+	return &Config{
+		ContainerName: t.Name,
+		ExposedPorts:  t.ExposedPorts,
+		Image:         t.Image,
+		Disk:          t.Disk,
+		Memory:        t.Memory,
+		Cpu:           t.CPU,
+		RestartPolicy: t.RestartPolicy,
+	}
+}
+
 type Docker struct {
 	Client *client.Client
 	Config Config
+}
+
+func NewDocker(config *Config) *Docker {
+	dc, _ := client.NewClientWithOpts(client.FromEnv)
+	return &Docker{
+		Client: dc,
+		Config: *config,
+	}
 }
 
 type DockerResult struct {
