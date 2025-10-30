@@ -75,6 +75,14 @@ func (w *Worker) AddTask(currTask task.Task) {
 	w.Queue.Enqueue(currTask)
 }
 
+// GetTasks returns a slice of task.Task.
+func (w *Worker) GetTasks() (tasks []*task.Task) {
+	for _, val := range w.Db {
+		tasks = append(tasks, val)
+	}
+	return tasks
+}
+
 // StartTask starts the Task.
 func (w *Worker) StartTask(currTask task.Task) task.DockerResult {
 	currTask.StartTime = time.Now().UTC()
