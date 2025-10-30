@@ -32,7 +32,7 @@ type Task struct {
 	// individual tasks.
 	ID uuid.UUID
 
-	ContainerID string
+	ContainerID string // ContainerID is the id of the created container.
 	Name        string // Name is the name of the task for better readability.
 
 	// State represents the current state of the task. See State more info.
