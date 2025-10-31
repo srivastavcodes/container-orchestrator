@@ -35,6 +35,6 @@ func (wa *WorkerApi) initRouter() {
 
 func (wa *WorkerApi) Start() {
 	wa.initRouter()
-	addr := wa.Host + ":" + wa.Port
-	log.Fatal(http.ListenAndServe(addr, wa.Router))
+	// addr := wa.Host + ":" + wa.Port
+	log.Fatal(http.ListenAndServe(":4000", wa.Router))
 }
